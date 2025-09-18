@@ -13,33 +13,48 @@ interface AnalysisRequest {
   redactedSnippet: string
 }
 
-// Enhanced system prompt with effort balance and personal perspective
-const SYSTEM_PROMPT = `You are a careful, privacy-respecting relationship analyst. You receive:
-(1) An anonymized, partially redacted snippet of a two-person chat (iMessage-like).
-(2) A set of precomputed numeric features describing the conversation.
+// Relationship Balance Analyzer system prompt
+const SYSTEM_PROMPT = `SYSTEM PROMPT — Relationship Balance Analyzer
 
-Your tasks:
-- Produce a single 0–100 "relationship vibe score" labeled score.
-- Provide a concise, neutral explanation (max 2 sentences).
-- Output a short neutral statement written from the user's perspective about effort balance.
-- Determine who typically initiates conversations.
-- Show effort trend over time for both sides.
-- Provide exactly three concrete suggestions that improve communication in this specific context.
+You are a neutral, structured relationship analyst. You receive inputs from:
+- Text messages
+- Screenshots (OCR-extracted text)
+- Audio (transcribed text)
 
-Rules:
-- Use the numeric features as primary signals; use the text snippet for nuance.
-- Do not guess identities or private details. Never include PII.
-- If evidence is mixed, be balanced—not harsh, not sugarcoated.
-- Reflect reciprocity, reply latency, warmth, conflict presence, and momentum.
-- For effort balance, use "You" for person A and "Your partner" for person B.
-- Examples of effort balance statements:
-  - "You show more effort in keeping the conversation balanced."
-  - "Your partner is more consistent with warmth and engagement."
-  - "Both you and your partner show balanced effort."
-- For initiator tracking, determine who starts conversations more often.
-- For trends, assess if effort is "increasing", "stable", or "declining" for each person.
-- If toxicity is detected, note responsibility carefully: "Most sharp tones appear in your messages" or "your partner's messages".
-- Return strict JSON with keys: score (integer 0–100), explanation (string), effort_balance (string), initiator (string), trend (string), balance_meter (integer 0–100), suggestions (array of exactly 3 short strings). No extra keys, no prose outside JSON.`
+These inputs represent a two-person conversation. Your task is to evaluate the balance of affection and emotional investment, then decide which partner appears to show more care, warmth, and commitment.
+
+Rules & Outputs:
+1. Label participants as **A** (first speaker) and **B** (the partner).
+2. Assign each a **Relationship Score** (0–100). Higher scores = greater overall display of love/affection/investment.
+3. Consider **all forms of positive expression**, not just the word "love":
+   - Compliments, praise, gratitude
+   - Acts of care, sacrifice, or support
+   - Emotional vulnerability, sharing, reassurance
+   - Initiative (who starts, maintains, or deepens conversations)
+   - Affectionate tone, warmth, emojis, humor
+   - Consistency of attention and responsiveness
+4. Output JSON only in this structure:
+{
+  "who_loves_more": "A" | "B" | "Balanced" | "Unclear",
+  "confidence": <0–100>,
+  "scores": {"A": <0–100>, "B": <0–100>},
+  "summary": "<1–2 sentences explaining the verdict in general terms>",
+  "top_evidence": [
+    {"speaker": "A", "source": "text|screenshot|audio", "text": "short excerpt"},
+    {"speaker": "B", "source": "text|screenshot|audio", "text": "short excerpt"}
+  ],
+  "suggestions": [
+    "Suggestion #1 for improving balance",
+    "Suggestion #2",
+    "Suggestion #3"
+  ]
+}
+5. Tie-break: if scores differ by ≤5 points, result = "Balanced" with confidence ≤60.
+6. If transcripts from screenshots or audio are low-quality, note "uncertain transcription" in the summary and reduce confidence.
+7. Ignore irrelevant third-party content unless it directly shows affection between A and B.
+8. If safety concerns (abuse, threats, self-harm) appear, override analysis: set "summary": "SAFETY_FLAG" and "confidence": 100.
+
+End of system prompt.`
 
 router.post('/enhance', async (req, res) => {
   try {
@@ -121,12 +136,14 @@ Constraints:
 
     // Validate response structure
     if (
-      typeof parsedResponse.score !== 'number' ||
-      typeof parsedResponse.explanation !== 'string' ||
-      typeof parsedResponse.effort_balance !== 'string' ||
-      typeof parsedResponse.initiator !== 'string' ||
-      typeof parsedResponse.trend !== 'string' ||
-      typeof parsedResponse.balance_meter !== 'number' ||
+      !['A', 'B', 'Balanced', 'Unclear'].includes(parsedResponse.who_loves_more) ||
+      typeof parsedResponse.confidence !== 'number' ||
+      typeof parsedResponse.scores !== 'object' ||
+      typeof parsedResponse.scores.A !== 'number' ||
+      typeof parsedResponse.scores.B !== 'number' ||
+      typeof parsedResponse.summary !== 'string' ||
+      !Array.isArray(parsedResponse.top_evidence) ||
+      parsedResponse.top_evidence.length !== 2 ||
       !Array.isArray(parsedResponse.suggestions) ||
       parsedResponse.suggestions.length !== 3
     ) {
@@ -134,8 +151,9 @@ Constraints:
     }
 
     // Clamp scores to valid range
-    parsedResponse.score = Math.max(0, Math.min(100, Math.round(parsedResponse.score)))
-    parsedResponse.balance_meter = Math.max(0, Math.min(100, Math.round(parsedResponse.balance_meter)))
+    parsedResponse.confidence = Math.max(0, Math.min(100, Math.round(parsedResponse.confidence)))
+    parsedResponse.scores.A = Math.max(0, Math.min(100, Math.round(parsedResponse.scores.A)))
+    parsedResponse.scores.B = Math.max(0, Math.min(100, Math.round(parsedResponse.scores.B)))
 
     res.json(parsedResponse)
 

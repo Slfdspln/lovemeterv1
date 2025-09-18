@@ -207,19 +207,23 @@ export class ScoringEngine {
 
   // Method to blend with LLM score if available
   blendWithLLM(result: AnalysisResult, llmResponse: any): AnalysisResult {
+    // Calculate average score from both A and B scores
+    const llmAverageScore = (llmResponse.scores.A + llmResponse.scores.B) / 2
+
     // 60% local, 40% LLM weighting
-    const blendedScore = Math.round(result.localScore * 0.6 + llmResponse.score * 0.4)
+    const blendedScore = Math.round(result.localScore * 0.6 + llmAverageScore * 0.4)
 
     return {
       ...result,
-      llmScore: llmResponse.score,
+      llmScore: llmAverageScore,
       finalScore: blendedScore,
-      explanation: llmResponse.explanation, // Use LLM explanation if available
+      explanation: llmResponse.summary, // Use LLM summary as explanation
       suggestions: llmResponse.suggestions, // Use LLM suggestions if available
-      effort_balance: llmResponse.effort_balance,
-      initiator: llmResponse.initiator,
-      trend: llmResponse.trend,
-      balance_meter: llmResponse.balance_meter
+      who_loves_more: llmResponse.who_loves_more,
+      confidence: llmResponse.confidence,
+      scores: llmResponse.scores,
+      summary: llmResponse.summary,
+      top_evidence: llmResponse.top_evidence
     }
   }
 }

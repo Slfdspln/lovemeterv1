@@ -31,12 +31,15 @@ export interface FeatureContribution {
 }
 
 export interface LLMResponse {
-  score: number; // 0-100
-  explanation: string;
-  effort_balance: string;
-  initiator: string;
-  trend: string;
-  balance_meter: number; // 0-100
+  who_loves_more: 'A' | 'B' | 'Balanced' | 'Unclear';
+  confidence: number; // 0-100
+  scores: { A: number; B: number }; // 0-100 each
+  summary: string;
+  top_evidence: Array<{
+    speaker: 'A' | 'B';
+    source: 'text' | 'screenshot' | 'audio';
+    text: string;
+  }>;
   suggestions: string[]; // exactly 3 items
 }
 
@@ -48,10 +51,15 @@ export interface AnalysisResult {
   contributions: FeatureContribution[];
   explanation: string;
   suggestions: string[];
-  effort_balance?: string;
-  initiator?: string;
-  trend?: string;
-  balance_meter?: number;
+  who_loves_more?: 'A' | 'B' | 'Balanced' | 'Unclear';
+  confidence?: number;
+  scores?: { A: number; B: number };
+  summary?: string;
+  top_evidence?: Array<{
+    speaker: 'A' | 'B';
+    source: 'text' | 'screenshot' | 'audio';
+    text: string;
+  }>;
 }
 
 export interface RedactionOptions {
