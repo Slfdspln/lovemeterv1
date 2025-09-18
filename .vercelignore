@@ -1,7 +1,8 @@
 node_modules
 .git
 backend
-shared
+shared/
+!frontend/src/shared/
 *.log
 .env*
 !.env.example
