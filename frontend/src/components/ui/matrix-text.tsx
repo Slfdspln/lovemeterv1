@@ -103,6 +103,10 @@ export const MatrixText = ({
                 color: "#ec4899",
                 textShadow: "0 2px 4px rgba(236, 72, 153, 0.5)",
             },
+            normal: {
+                color: "#000000",
+                textShadow: "none",
+            },
         }),
         []
     );
@@ -110,7 +114,7 @@ export const MatrixText = ({
     return (
         <div
             className={cn(
-                "flex items-center justify-center text-black dark:text-white py-8",
+                "flex items-center justify-center text-black py-8",
                 className
             )}
             aria-label="Matrix text animation"
