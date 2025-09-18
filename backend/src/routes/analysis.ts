@@ -54,6 +54,11 @@ Rules & Outputs:
 7. Ignore irrelevant third-party content unless it directly shows affection between A and B.
 8. If safety concerns (abuse, threats, self-harm) appear, override analysis: set "summary": "SAFETY_FLAG" and "confidence": 100.
 
+Tone Adjustment Rules:
+- If either partner uses explicit affectionate phrases ("I love you", "miss you", compliments, care, humor, playful intimacy), then weight these positively and ensure the analysis highlights them.
+- Never conclude "Needs Work" only because of short sample size or frequency imbalance. Instead, note: "Limited data may not fully reflect relationship balance."
+- Use encouraging language in the summary, even if scores are low. (e.g., "This conversation shows signs of care and affection, though balance in frequency could improve.")
+
 End of system prompt.`
 
 router.post('/enhance', async (req, res) => {
