@@ -23,15 +23,9 @@ export function LoveMeter({ score, explanation, llmScore }: LoveMeterProps) {
     if (score >= 85) return { leader: 'You', message: '🔥 You\'re totally winning this love game!' }
     if (score >= 70) return { leader: 'Balanced', message: '💕 Perfect balance - you\'re both equally smitten!' }
     if (score >= 50) return { leader: 'They\'re leading', message: '😍 They might love you just a tiny bit more!' }
-    return { leader: 'They\'re winning', message: '🥰 They\'re completely obsessed with you!' }
+    return { leader: 'Time to reconnect', message: '💙 Could use some more love vibes between you two!' }
   }
 
-  const getMeterColor = (score: number) => {
-    if (score >= 85) return 'from-red-400 to-red-600' // Hot red for high love
-    if (score >= 70) return 'from-pink-400 to-red-500' // Pink to red
-    if (score >= 50) return 'from-yellow-400 to-pink-500' // Yellow to pink
-    return 'from-yellow-300 to-orange-400' // Cool yellow/orange
-  }
 
   const result = getLoveLeader(score)
 
@@ -45,66 +39,90 @@ export function LoveMeter({ score, explanation, llmScore }: LoveMeterProps) {
       <div className="flex flex-col lg:flex-row items-center gap-8">
         {/* Love Meter Gauge */}
         <div className="relative flex flex-col items-center">
-          {/* Hearts around the gauge */}
-          <div className="relative w-64 h-32">
-            {/* Hearts positioned around semicircle */}
-            {[0, 30, 60, 90, 120, 150, 180].map((heartAngle, i) => (
+          <div className="relative w-80 h-52 flex flex-col items-center justify-center">
+            {/* Gauge Container */}
+            <div className="relative">
+              <svg width="240" height="140" viewBox="0 0 240 140" className="overflow-visible">
+                {/* Background arc */}
+                <path
+                  d="M 40 120 A 80 80 0 0 1 200 120"
+                  stroke="#e5e7eb"
+                  strokeWidth="16"
+                  fill="none"
+                  strokeLinecap="round"
+                />
+                {/* Progress arc */}
+                <path
+                  d="M 40 120 A 80 80 0 0 1 200 120"
+                  stroke="url(#gaugeGradient)"
+                  strokeWidth="16"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeDasharray="251.2"
+                  strokeDashoffset={251.2 - (animatedScore / 100) * 251.2}
+                  className="transition-all duration-2000 ease-out"
+                />
+                <defs>
+                  <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#fbbf24" />
+                    <stop offset="50%" stopColor="#f472b6" />
+                    <stop offset="100%" stopColor="#ef4444" />
+                  </linearGradient>
+                </defs>
+              </svg>
+
+              {/* Hearts positioned around the arc */}
+              {[20, 50, 80, 110, 140, 170].map((heartAngle, i) => {
+                const radian = (heartAngle * Math.PI) / 180
+                const radius = 95
+                const x = 120 + Math.cos(radian) * radius
+                const y = 120 - Math.sin(radian) * radius
+
+                return (
+                  <div
+                    key={i}
+                    className="absolute pointer-events-none"
+                    style={{
+                      left: `${x}px`,
+                      top: `${y}px`,
+                      transform: 'translate(-50%, -50%)'
+                    }}
+                  >
+                    <span
+                      className={`text-lg transition-all duration-1000 ${
+                        heartAngle <= ((animatedScore / 100) * 160) + 20 ? 'text-red-500 scale-110' : 'text-gray-300 scale-90'
+                      }`}
+                    >
+                      💖
+                    </span>
+                  </div>
+                )
+              })}
+
+              {/* Needle */}
               <div
-                key={i}
-                className="absolute"
-                style={{
-                  transform: `rotate(${heartAngle}deg) translateY(-120px) rotate(-${heartAngle}deg)`,
-                  transformOrigin: '0 120px',
-                  left: '50%',
-                  top: '100%'
-                }}
+                className="absolute pointer-events-none"
+                style={{ left: '120px', top: '120px', transform: 'translate(-50%, -50%)' }}
               >
-                <span
-                  className={`text-lg transition-all duration-1000 ${
-                    heartAngle <= angle ? 'text-red-500 scale-125' : 'text-gray-300 scale-100'
-                  }`}
-                >
-                  ❤️
-                </span>
-              </div>
-            ))}
-
-            {/* Gauge background */}
-            <div className="absolute inset-0 flex items-end justify-center">
-              <div className="w-48 h-24 overflow-hidden">
-                <div className="w-48 h-48 rounded-full border-8 border-gray-200"></div>
-              </div>
-            </div>
-
-            {/* Animated gauge fill */}
-            <div className="absolute inset-0 flex items-end justify-center">
-              <div className="w-48 h-24 overflow-hidden">
                 <div
-                  className={`w-48 h-48 rounded-full border-8 bg-gradient-to-r ${getMeterColor(score)} transition-all duration-2000 ease-out`}
+                  className="w-1 h-20 bg-gray-800 rounded-full origin-bottom transition-transform duration-2000 ease-out shadow-lg"
                   style={{
-                    clipPath: `polygon(0 100%, 50% 50%, ${50 + (angle / 180) * 50}% ${50 - Math.sin((angle * Math.PI) / 180) * 50}%, 100% 100%)`
+                    transform: `rotate(${(animatedScore / 100) * 160 - 80}deg)`,
+                    transformOrigin: '50% 100%'
                   }}
                 ></div>
+                <div className="w-4 h-4 bg-gray-800 rounded-full absolute bottom-0 left-1/2 transform -translate-x-1/2 shadow-lg"></div>
               </div>
             </div>
 
-            {/* Needle */}
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2">
-              <div
-                className="w-1 h-20 bg-gray-800 rounded-full origin-bottom transition-transform duration-2000 ease-out"
-                style={{ transform: `rotate(${angle - 90}deg)` }}
-              ></div>
-              <div className="w-4 h-4 bg-gray-800 rounded-full absolute -bottom-2 left-1/2 transform -translate-x-1/2"></div>
-            </div>
-          </div>
-
-          {/* Score display */}
-          <div className="text-center mt-4">
-            <div className="text-3xl font-bold text-gray-800 mb-1">
-              {Math.round(animatedScore)}%
-            </div>
-            <div className="text-lg font-semibold text-pink-600">
-              {result.leader}
+            {/* Score display */}
+            <div className="text-center mt-6">
+              <div className="text-4xl font-bold text-gray-800 mb-2">
+                {Math.round(animatedScore)}%
+              </div>
+              <div className="text-xl font-semibold text-pink-600">
+                {result.leader}
+              </div>
             </div>
           </div>
         </div>
