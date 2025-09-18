@@ -122,7 +122,7 @@ export function UploadScreen({ onAnalysisComplete, onBackToLanding }: UploadScre
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             <Heart className="w-4 h-4 mr-2 fill-current text-pink-500" />
-            Back to Michales
+            Back to Michalis
           </Button>
         </div>
       )}

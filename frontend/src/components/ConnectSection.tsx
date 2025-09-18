@@ -139,7 +139,7 @@ export function ConnectSection({ onStartAnalysis, onForYou }: ConnectSectionProp
           className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-10 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200 border-0"
         >
           <Heart className="w-6 h-6 mr-3 fill-current" />
-          For You, Michales
+          For You, Michalis
         </Button>
       </div>
     </section>

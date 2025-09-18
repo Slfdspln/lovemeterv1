@@ -19,7 +19,7 @@ interface MatrixTextProps {
 }
 
 export const MatrixText = ({
-    text = "I love you, Michales.",
+    text = "I love you, Michalis.",
     className,
     initialDelay = 200,
     letterAnimationDuration = 500,

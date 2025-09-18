@@ -37,11 +37,11 @@ export function ForYouPage({ onBack }: ForYouPageProps) {
           >
             <ArrowLeft className="w-4 h-4" />
             <Heart className="w-4 h-4 fill-current text-pink-500" />
-            Back to Michales
+            Back to Michalis
           </Button>
           <div className="flex items-center gap-2 text-pink-600">
             <Heart className="w-5 h-5 fill-current" />
-            <span className="font-semibold">For You, Michales</span>
+            <span className="font-semibold">For You, Michalis</span>
             <Heart className="w-5 h-5 fill-current" />
           </div>
         </div>
@@ -49,7 +49,7 @@ export function ForYouPage({ onBack }: ForYouPageProps) {
         {/* Matrix Text */}
         <div className="text-center mb-12">
           <MatrixText
-            text="I love you, Michales."
+            text="I love you, Michalis."
             className="mb-4"
             initialDelay={200}
             letterAnimationDuration={500}

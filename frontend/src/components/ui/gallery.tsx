@@ -125,7 +125,7 @@ export const PhotoGallery = ({
 
       {/* Matrix Text Animation */}
       <MatrixText
-        text="I love you, Michales."
+        text="I love you, Michalis."
         className="mb-8"
         initialDelay={200}
         letterAnimationDuration={500}
