@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { RedactionOptions } from '@love-meter/shared'
+import { RedactionOptions } from '../shared/types'
 import { Shield, Eye, EyeOff, AlertTriangle } from 'lucide-react'
 
 interface PrivacyControlsProps {

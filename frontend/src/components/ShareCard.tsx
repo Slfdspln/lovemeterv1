@@ -1,4 +1,4 @@
-import { AnalysisResult } from '@love-meter/shared'
+import { AnalysisResult } from '../shared/types'
 import { Button } from './ui/Button'
 import { X, Download, Share2 } from 'lucide-react'
 

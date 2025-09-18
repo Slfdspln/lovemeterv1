@@ -1,4 +1,4 @@
-import { FeatureContribution } from '@love-meter/shared'
+import { FeatureContribution } from '../shared/types'
 import { TrendingUp, TrendingDown, Minus } from 'lucide-react'
 
 interface FeatureBreakdownProps {

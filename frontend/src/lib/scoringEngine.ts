@@ -1,4 +1,4 @@
-import { AnalysisResult, ConversationFeatures, FeatureContribution, Message } from '@love-meter/shared'
+import { AnalysisResult, ConversationFeatures, FeatureContribution, Message } from '../shared/types'
 
 export class ScoringEngine {
   private featureWeights = {

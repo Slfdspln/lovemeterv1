@@ -1,4 +1,4 @@
-import { ConversationFeatures } from '@love-meter/shared'
+import { ConversationFeatures } from '../shared/types'
 import { MessageCircle, Clock, Heart, Camera } from 'lucide-react'
 
 interface ConversationStatsProps {

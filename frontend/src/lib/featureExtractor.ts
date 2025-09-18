@@ -1,4 +1,4 @@
-import { Message, ConversationFeatures } from '@love-meter/shared'
+import { Message, ConversationFeatures } from '../shared/types'
 
 export class FeatureExtractor {
   private positiveWords = [

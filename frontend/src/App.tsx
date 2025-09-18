@@ -4,7 +4,7 @@ import { UploadScreen } from './components/UploadScreen'
 import { AnalysisScreen } from './components/AnalysisScreen'
 import { ResultsScreen } from './components/ResultsScreen'
 import { ForYouPage } from './components/ForYouPage'
-import { AnalysisResult } from '@love-meter/shared'
+import { AnalysisResult } from './shared/types'
 
 type AppState = 'landing' | 'upload' | 'analyzing' | 'results' | 'foryou'
 

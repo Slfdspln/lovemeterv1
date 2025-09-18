@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { Upload, Image, FileText, AlertCircle, ArrowLeft, Heart } from 'lucide-react'
-import { AnalysisResult, UploadProgress, RedactionOptions } from '@love-meter/shared'
+import { AnalysisResult, UploadProgress, RedactionOptions } from '../shared/types'
 import { ProcessingEngine } from '../lib/processing'
 import { Button } from './ui/Button'
 import { Progress } from './ui/Progress'

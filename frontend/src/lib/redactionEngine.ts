@@ -1,4 +1,4 @@
-import { Message, RedactionOptions } from '@love-meter/shared'
+import { Message, RedactionOptions } from '../shared/types'
 
 export class RedactionEngine {
   private options: RedactionOptions = {

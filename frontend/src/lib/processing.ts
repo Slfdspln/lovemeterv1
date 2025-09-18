@@ -1,5 +1,5 @@
 import { createWorker } from 'tesseract.js'
-import { AnalysisResult, Message, UploadProgress, LLMResponse, RedactionOptions } from '@love-meter/shared'
+import { AnalysisResult, Message, UploadProgress, LLMResponse, RedactionOptions } from '../shared/types'
 import { MessageParser } from './messageParser'
 import { FeatureExtractor } from './featureExtractor'
 import { RedactionEngine } from './redactionEngine'

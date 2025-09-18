@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { AnalysisResult } from '@love-meter/shared'
+import { AnalysisResult } from '../shared/types'
 import { Button } from './ui/Button'
 import { ScoreMeter } from './ScoreMeter'
 import { FeatureBreakdown } from './FeatureBreakdown'

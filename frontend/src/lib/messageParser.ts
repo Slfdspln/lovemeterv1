@@ -1,4 +1,4 @@
-import { Message } from '@love-meter/shared'
+import { Message } from '../shared/types'
 
 export class MessageParser {
   parseText(text: string): Message[] {

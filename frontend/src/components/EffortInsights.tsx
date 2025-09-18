@@ -1,4 +1,4 @@
-import { AnalysisResult } from '@love-meter/shared'
+import { AnalysisResult } from '../shared/types'
 import { TrendingUp, TrendingDown, Users, MessageCircle, BarChart3 } from 'lucide-react'
 
 interface EffortInsightsProps {
