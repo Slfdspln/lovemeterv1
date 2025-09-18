@@ -1,4 +1,3 @@
-import React from "react";
 import { Heart, ArrowRight } from "lucide-react";
 import { Button } from "./ui/Button";
 import { HighlighterItem, HighlightGroup, Particles } from "./ui/highlighter";
