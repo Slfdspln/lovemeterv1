@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { AnalysisResult } from '../shared/types'
 import { Button } from './ui/Button'
-import { ScoreMeter } from './ScoreMeter'
+import { LoveMeter } from './LoveMeter'
 import { FeatureBreakdown } from './FeatureBreakdown'
 import { ConversationStats } from './ConversationStats'
 import { Suggestions } from './Suggestions'
@@ -57,8 +57,8 @@ export function ResultsScreen({ result, onNewAnalysis, onForYou }: ResultsScreen
         </p>
       </div>
 
-      {/* Score Meter */}
-      <ScoreMeter
+      {/* Love Meter */}
+      <LoveMeter
         score={result.finalScore}
         explanation={result.explanation}
         llmScore={result.llmScore}

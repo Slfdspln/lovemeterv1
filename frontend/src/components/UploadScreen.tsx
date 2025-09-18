@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { Upload, Image, FileText, AlertCircle, ArrowLeft, Heart } from 'lucide-react'
+import { Upload, Image, FileText, AlertCircle, ArrowLeft, Heart, ChevronDown, ChevronUp } from 'lucide-react'
 import { AnalysisResult, UploadProgress, RedactionOptions } from '../shared/types'
 import { ProcessingEngine } from '../lib/processing'
 import { Button } from './ui/Button'
@@ -27,6 +27,7 @@ export function UploadScreen({ onAnalysisComplete, onBackToLanding }: UploadScre
   })
   const [consentGiven, setConsentGiven] = useState(false)
   const [showPrivacyControls, setShowPrivacyControls] = useState(false)
+  const [showHelp, setShowHelp] = useState(false)
 
   const processingEngine = new ProcessingEngine()
 
@@ -156,7 +157,7 @@ export function UploadScreen({ onAnalysisComplete, onBackToLanding }: UploadScre
       </div>
 
       {mode === 'screenshots' && (
-        <div className="bg-white rounded-xl shadow-lg p-8">
+        <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl p-8 border border-white/20">
           {/* Upload Area */}
           <div
             {...getRootProps()}
@@ -207,20 +208,62 @@ export function UploadScreen({ onAnalysisComplete, onBackToLanding }: UploadScre
             </div>
           )}
 
-          {/* Help */}
-          <div className="mt-8 p-4 bg-gray-50 rounded-lg">
-            <h4 className="font-semibold mb-2">How to export from iPhone:</h4>
-            <ul className="text-sm text-gray-600 space-y-1">
-              <li>• Option 1: Take screenshots of your conversation</li>
-              <li>• Option 2: Mac Messages → Cmd+A → Copy → Paste here (text mode)</li>
-              <li>• Option 3: Export with third-party tools (iMazing, etc.)</li>
-            </ul>
+          {/* Help Section */}
+          <div className="mt-8">
+            <button
+              onClick={() => setShowHelp(!showHelp)}
+              className="w-full flex items-center justify-between p-4 bg-gradient-to-r from-pink-50 to-purple-50 rounded-lg border border-pink-200 hover:from-pink-100 hover:to-purple-100 transition-colors"
+            >
+              <span className="font-semibold text-gray-800">Need help exporting? 📱</span>
+              {showHelp ? (
+                <ChevronUp className="w-5 h-5 text-gray-600" />
+              ) : (
+                <ChevronDown className="w-5 h-5 text-gray-600" />
+              )}
+            </button>
+
+            {showHelp && (
+              <div className="mt-4 space-y-4">
+                {/* Option 1 */}
+                <div className="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
+                  <div className="flex items-start gap-3">
+                    <div className="text-2xl">📸</div>
+                    <div>
+                      <h5 className="font-semibold text-gray-800 mb-1">Quickest — just screenshot your chat 💨</h5>
+                      <p className="text-sm text-gray-600">Take screenshots of your conversation and upload them here. Easy peasy!</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Option 2 */}
+                <div className="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
+                  <div className="flex items-start gap-3">
+                    <div className="text-2xl">💻</div>
+                    <div>
+                      <h5 className="font-semibold text-gray-800 mb-1">Mac Messages magic ✨</h5>
+                      <p className="text-sm text-gray-600">Open Messages on Mac → Select all (Cmd+A) → Copy → Switch to "Paste Text" mode and paste here</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Option 3 */}
+                <div className="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
+                  <div className="flex items-start gap-3">
+                    <div className="text-2xl">🔧</div>
+                    <div>
+                      <h5 className="font-semibold text-gray-800 mb-1">Pro tools (for the tech-savvy) 🤓</h5>
+                      <p className="text-sm text-gray-600">Use third-party tools like iMazing, 3uTools, or similar to export your messages</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
 
       {mode === 'text' && (
-        <div className="bg-white rounded-xl shadow-lg p-8">
+        <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl p-8 border border-white/20">
           <textarea
             id="text-input"
             placeholder="Paste your conversation text here..."
