@@ -29,10 +29,11 @@ export function ForYouPage({ onBack }: ForYouPageProps) {
           <Button
             variant="outline"
             onClick={onBack}
-            className="flex items-center gap-2"
+            className="bg-gradient-to-r from-purple-100 to-pink-100 hover:from-purple-200 hover:to-pink-200 border-purple-300 text-purple-700 hover:text-purple-800 flex items-center gap-2"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to Love Meter
+            <Heart className="w-4 h-4 fill-current text-pink-500" />
+            Back to Michales
           </Button>
           <div className="flex items-center gap-2 text-pink-600">
             <Heart className="w-5 h-5 fill-current" />
@@ -50,10 +51,6 @@ export function ForYouPage({ onBack }: ForYouPageProps) {
             letterAnimationDuration={500}
             letterInterval={100}
           />
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            A collection of our precious moments together. Each photo tells a story
-            of love, laughter, and the beautiful journey we share.
-          </p>
         </div>
 
         {/* Photo Grid */}

@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { Upload, Image, FileText, AlertCircle } from 'lucide-react'
+import { Upload, Image, FileText, AlertCircle, ArrowLeft, Heart } from 'lucide-react'
 import { AnalysisResult, UploadProgress, RedactionOptions } from '@love-meter/shared'
 import { ProcessingEngine } from '../lib/processing'
 import { Button } from './ui/Button'
@@ -9,9 +9,10 @@ import { PrivacyControls } from './PrivacyControls'
 
 interface UploadScreenProps {
   onAnalysisComplete: (result: AnalysisResult) => void
+  onBackToLanding?: () => void
 }
 
-export function UploadScreen({ onAnalysisComplete }: UploadScreenProps) {
+export function UploadScreen({ onAnalysisComplete, onBackToLanding }: UploadScreenProps) {
   const [progress, setProgress] = useState<UploadProgress | null>(null)
   const [error, setError] = useState<string>('')
   const [mode, setMode] = useState<'screenshots' | 'text'>('screenshots')
@@ -106,6 +107,21 @@ export function UploadScreen({ onAnalysisComplete }: UploadScreenProps) {
 
   return (
     <div className="max-w-4xl mx-auto">
+      {/* Back Button */}
+      {onBackToLanding && (
+        <div className="flex justify-start mb-6">
+          <Button
+            onClick={onBackToLanding}
+            variant="outline"
+            className="bg-gradient-to-r from-purple-100 to-pink-100 hover:from-purple-200 hover:to-pink-200 border-purple-300 text-purple-700 hover:text-purple-800"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            <Heart className="w-4 h-4 mr-2 fill-current text-pink-500" />
+            Back to Michales
+          </Button>
+        </div>
+      )}
+
       {/* Mode Selection */}
       <div className="flex justify-center mb-8">
         <div className="bg-white rounded-lg p-1 shadow-sm border">

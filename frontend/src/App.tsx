@@ -27,7 +27,7 @@ function App() {
   }
 
   const handleBackFromForYou = () => {
-    setState('results')
+    setState('landing')
   }
 
   const handleStartAnalysis = () => {
@@ -36,6 +36,10 @@ function App() {
 
   const handleForYouFromLanding = () => {
     setState('foryou')
+  }
+
+  const handleBackToLanding = () => {
+    setState('landing')
   }
 
   return (
@@ -60,7 +64,10 @@ function App() {
             </header>
 
             {state === 'upload' && (
-              <UploadScreen onAnalysisComplete={handleUploadComplete} />
+              <UploadScreen
+                onAnalysisComplete={handleUploadComplete}
+                onBackToLanding={handleBackToLanding}
+              />
             )}
 
             {state === 'analyzing' && (

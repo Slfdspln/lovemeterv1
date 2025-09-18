@@ -33,7 +33,7 @@ export function LandingPage({ onStartAnalysis, onForYou }: LandingPageProps) {
           <Button
             onClick={onStartAnalysis}
             size="lg"
-            className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3"
+            className="bg-gradient-to-r from-purple-500 to-purple-700 hover:from-purple-600 hover:to-purple-800 text-white px-8 py-3"
           >
             <ArrowRight className="w-5 h-5 mr-2" />
             Start Love Analysis
@@ -42,7 +42,7 @@ export function LandingPage({ onStartAnalysis, onForYou }: LandingPageProps) {
           <Button
             onClick={onForYou}
             size="lg"
-            className="bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white px-8 py-3"
+            className="bg-gradient-to-r from-purple-400 to-purple-600 hover:from-purple-500 hover:to-purple-700 text-white px-8 py-3"
           >
             <Heart className="w-5 h-5 mr-2 fill-current" />
             For You, Michales

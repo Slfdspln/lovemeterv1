@@ -173,11 +173,6 @@ export const PhotoGallery = ({
           </motion.div>
         </motion.div>
       </div>
-      <div className="flex w-full justify-center">
-        <Button>
-          View All Memories
-        </Button>
-      </div>
     </div>
   );
 };
