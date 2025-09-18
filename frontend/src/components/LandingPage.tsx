@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { PhotoGallery } from './ui/gallery'
 import { Button } from './ui/Button'
 import { Heart, ArrowRight } from 'lucide-react'
@@ -9,7 +8,6 @@ interface LandingPageProps {
 }
 
 export function LandingPage({ onStartAnalysis, onForYou }: LandingPageProps) {
-  const [showGallery, setShowGallery] = useState(false)
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50">

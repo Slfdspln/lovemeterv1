@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { AnalysisResult } from '@love-meter/shared'
 import { Button } from './ui/Button'
 import { X, Download, Share2 } from 'lucide-react'
@@ -9,7 +8,6 @@ interface ShareCardProps {
 }
 
 export function ShareCard({ result, onClose }: ShareCardProps) {
-  const [anonymized, setAnonymized] = useState(true)
 
   const generateShareText = () => {
     const score = result.finalScore

@@ -30,7 +30,7 @@ export function FeatureBreakdown({ contributions }: FeatureBreakdownProps) {
       <h3 className="text-xl font-semibold mb-6">What's Driving Your Score</h3>
 
       <div className="grid md:grid-cols-2 gap-4">
-        {topContributions.map((contrib, index) => (
+        {topContributions.map((contrib) => (
           <div
             key={contrib.feature}
             className={`flex items-center justify-between p-4 rounded-lg border ${getContributionColor(contrib.contribution)}`}

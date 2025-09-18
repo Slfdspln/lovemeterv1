@@ -1,5 +1,3 @@
-import { AnalysisResult } from '@love-meter/shared'
-
 interface ScoreMeterProps {
   score: number
   explanation: string

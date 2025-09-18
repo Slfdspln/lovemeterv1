@@ -1,10 +1,9 @@
 "use client";
 
-import { Ref, forwardRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, useMotionValue } from "framer-motion";
 
 import { cn } from "../../lib/utils";
-import { Button } from "./button";
 import { MatrixText } from "./matrix-text";
 
 export const PhotoGallery = ({
@@ -56,17 +55,17 @@ export const PhotoGallery = ({
       scale: 1,
       // Keep the same z-index throughout animation
     }),
-    visible: (custom: { x: any; y: any; order: number }) => ({
+    visible: (custom: { x: string; y: string; order: number }) => ({
       x: custom.x,
       y: custom.y,
-      rotate: 0, // No rotation
+      rotate: 0,
       scale: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 70,
         damping: 12,
         mass: 1,
-        delay: custom.order * 0.15, // Explicit delay based on order
+        delay: custom.order * 0.15,
       },
     }),
   };

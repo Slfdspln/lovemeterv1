@@ -19,8 +19,6 @@ export class FeatureExtractor {
   private casualEmojis = ['😊', '😄', '😃', '🙂', '👍', '👌', '✨', '🎉']
 
   extractFeatures(messages: Message[], windowDays: number = 30): ConversationFeatures {
-    const messagesA = messages.filter(m => m.sender === 'A')
-    const messagesB = messages.filter(m => m.sender === 'B')
 
     // Filter to time window if timestamps available
     const filteredMessages = this.filterByTimeWindow(messages, windowDays)

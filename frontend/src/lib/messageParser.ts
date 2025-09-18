@@ -3,7 +3,6 @@ import { Message } from '@love-meter/shared'
 export class MessageParser {
   parseText(text: string): Message[] {
     const lines = text.split('\n').filter(line => line.trim())
-    const messages: Message[] = []
 
     // Detect if this is iMessage format or generic chat
     const isIMessage = this.detectIMessageFormat(text)
@@ -122,7 +121,7 @@ export class MessageParser {
     return cleaned
   }
 
-  private detectSender(line: string, currentSender: 'A' | 'B' | null, messageIndex: number): 'A' | 'B' {
+  private detectSender(_line: string, currentSender: 'A' | 'B' | null, messageIndex: number): 'A' | 'B' {
     // For simplicity, alternate between A and B
     // In a real implementation, you'd use bubble colors, positioning, etc.
 

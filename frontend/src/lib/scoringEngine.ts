@@ -148,7 +148,7 @@ export class ScoringEngine {
   private getSuggestionForFactor(
     feature: string,
     features: ConversationFeatures,
-    messages: Message[]
+    _messages: Message[]
   ): string | null {
     switch (feature) {
       case 'sentiment_polarity':
