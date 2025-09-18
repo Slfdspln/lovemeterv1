@@ -21,5 +21,3 @@ export const CUTE_PHOTOS = [
   "/images/cute/IMG_0684.JPG",
 ];
 
-// Read API key for any external calls (score service, signed CDN, etc.)
-export const LOVE_API_KEY = import.meta.env.VITE_LOVE_API_KEY ?? "";

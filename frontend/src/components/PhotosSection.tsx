@@ -1,5 +1,5 @@
 import React from "react";
-import { SAD_PHOTOS, CUTE_PHOTOS, LOVE_API_KEY } from "../config/photos";
+import { SAD_PHOTOS, CUTE_PHOTOS } from "../config/photos";
 
 // Simple rotation counter persisted between runs
 function nextIndex(key: string, max: number) {
@@ -30,8 +30,6 @@ type PhotosSectionProps = {
 const PhotosSection: React.FC<PhotosSectionProps> = ({ score }) => {
   const { url, alt, type } = pickPhoto(score);
 
-  // Example: show API key usage is wired (don't actually render the key)
-  const apiKeyInUse = Boolean(LOVE_API_KEY);
 
   const getMoodEmoji = () => {
     if (score >= 85) return "💖";
@@ -95,7 +93,6 @@ const PhotosSection: React.FC<PhotosSectionProps> = ({ score }) => {
       {/* Development info - only show in dev mode */}
       {import.meta.env.DEV && (
         <div className="mt-4 text-xs text-gray-500 bg-gray-50 rounded p-2">
-          <div>API key: {apiKeyInUse ? "✅ configured" : "❌ missing — set VITE_LOVE_API_KEY"}</div>
           <div>Photo pool: {type === 'sad' ? `Sad (${SAD_PHOTOS.length} images)` : `Cute (${CUTE_PHOTOS.length} images)`}</div>
         </div>
       )}
