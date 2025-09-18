@@ -1,5 +1,5 @@
 import { AnalysisResult } from '../shared/types'
-import { Heart, Users, MessageSquare, Lightbulb } from 'lucide-react'
+import { Heart, MessageSquare } from 'lucide-react'
 
 interface EffortInsightsProps {
   result: AnalysisResult
