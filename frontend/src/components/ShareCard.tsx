@@ -23,7 +23,7 @@ ${result.contributions.slice(0, 2).map(c =>
   `${c.contribution > 0 ? '✨' : '💡'} ${c.label}${c.contribution > 0 ? ` (+${c.contribution})` : ` (${c.contribution})`}`
 ).join('\n')}
 
-Generated with Love Meter v2 ✨`
+Generated with Love Meter ✨`
   }
 
   const downloadShareImage = () => {
@@ -45,7 +45,7 @@ Generated with Love Meter v2 ✨`
     ctx.fillStyle = '#1e293b'
     ctx.font = 'bold 32px system-ui'
     ctx.textAlign = 'center'
-    ctx.fillText('Love Meter v2', canvas.width / 2, 80)
+    ctx.fillText('Love Meter', canvas.width / 2, 80)
 
     // Score circle
     const centerX = canvas.width / 2
@@ -145,7 +145,7 @@ Generated with Love Meter v2 ✨`
               {result.explanation}
             </div>
             <div className="text-xs text-gray-500">
-              Generated with Love Meter v2 ✨
+              Generated with Love Meter ✨
             </div>
           </div>
 

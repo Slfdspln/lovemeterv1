@@ -56,7 +56,7 @@ function App() {
           <div className="container mx-auto px-4 py-8">
             <header className="text-center mb-8">
               <h1 className="text-4xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
-                Love Meter v2
+                Love Meter
               </h1>
               <p className="text-gray-600 mt-2">
                 Analyze your relationship conversations with privacy and insights

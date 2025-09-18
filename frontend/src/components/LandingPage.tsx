@@ -15,7 +15,7 @@ export function LandingPage({ onStartAnalysis, onForYou }: LandingPageProps) {
         {/* Header */}
         <header className="text-center mb-8">
           <h1 className="text-5xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent mb-4">
-            Love Meter v2
+            Love Meter
           </h1>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
             Analyze your relationship conversations with privacy and insights.
