@@ -1,5 +1,6 @@
 import { PhotoGallery } from './ui/gallery'
 import { Button } from './ui/Button'
+import { Component as AnimatedBackground } from './ui/raycast-animated-background'
 import { Heart, ArrowRight } from 'lucide-react'
 
 interface LandingPageProps {
@@ -10,8 +11,13 @@ interface LandingPageProps {
 export function LandingPage({ onStartAnalysis, onForYou }: LandingPageProps) {
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen relative bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50">
+      {/* Animated Background */}
+      <div className="fixed inset-0 -z-10 opacity-30">
+        <AnimatedBackground />
+      </div>
+
+      <div className="container mx-auto px-4 py-8 relative z-10">
         {/* Header */}
         <header className="text-center mb-8 mt-8">
           <h1 className="text-5xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent mb-4">

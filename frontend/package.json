@@ -24,7 +24,8 @@
     "react-dropzone": "^14.2.3",
     "recharts": "^2.8.0",
     "tailwind-merge": "^2.0.0",
-    "tesseract.js": "^5.0.4"
+    "tesseract.js": "^5.0.4",
+    "unicornstudio-react": "^1.4.30"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
