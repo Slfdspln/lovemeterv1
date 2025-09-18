@@ -164,12 +164,20 @@ export function PrivacyControls({
         {showPreview && (
           <div className="mt-3 p-3 bg-gray-50 rounded border text-sm">
             <div className="mb-2 text-gray-600">Original:</div>
-            <div className="mb-3 font-mono text-xs bg-white p-2 rounded border">
-              {sampleText}
+            <div className="mb-3 p-3 bg-white rounded-lg border space-y-2">
+              <div className="flex justify-end">
+                <div className="max-w-xs bg-blue-500 text-white px-3 py-2 rounded-2xl rounded-br-md text-xs">
+                  {sampleText}
+                </div>
+              </div>
             </div>
             <div className="mb-2 text-gray-600">After redaction:</div>
-            <div className="font-mono text-xs bg-white p-2 rounded border">
-              {getRedactedPreview()}
+            <div className="p-3 bg-white rounded-lg border space-y-2">
+              <div className="flex justify-end">
+                <div className="max-w-xs bg-blue-500 text-white px-3 py-2 rounded-2xl rounded-br-md text-xs">
+                  {getRedactedPreview()}
+                </div>
+              </div>
             </div>
           </div>
         )}

@@ -12,13 +12,17 @@ export function ForYouPage({ onBack }: ForYouPageProps) {
 
   // All images from the 'him' folder
   const images = [
-    { src: "/images/him/IMG_0117.PNG", caption: "Beautiful moment captured" },
-    { src: "/images/him/IMG_0621.JPG", caption: "Sweet memories" },
-    { src: "/images/him/IMG_0625.JPG", caption: "Love in every frame" },
-    { src: "/images/him/IMG_0653.JPG", caption: "Perfect together" },
-    { src: "/images/him/IMG_9824.JPG", caption: "Cherished moments" },
-    // Note: HEIC files might need conversion for web display
-    // Adding the JPG/PNG ones that work well in browsers
+    { src: "/images/him/IMG_0117.PNG" },
+    { src: "/images/him/IMG_0470.PNG" },
+    { src: "/images/him/IMG_0515.JPG" },
+    { src: "/images/him/IMG_0567.JPG" },
+    { src: "/images/him/IMG_0621.JPG" },
+    { src: "/images/him/IMG_0625.JPG" },
+    { src: "/images/him/IMG_0653.JPG" },
+    { src: "/images/him/IMG_0672 2.JPG" },
+    { src: "/images/him/IMG_0685.JPG" },
+    { src: "/images/him/IMG_9780.JPG" },
+    { src: "/images/him/IMG_9824.JPG" },
   ]
 
   return (
@@ -64,36 +68,21 @@ export function ForYouPage({ onBack }: ForYouPageProps) {
               <div className="aspect-square overflow-hidden">
                 <img
                   src={image.src}
-                  alt={image.caption}
+                  alt="Photo"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-              </div>
-              <div className="p-4">
-                <p className="text-gray-700 text-center font-medium">
-                  {image.caption}
-                </p>
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
           ))}
         </div>
 
-        {/* Love Message */}
+        {/* Message */}
         <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg p-8 text-center max-w-2xl mx-auto">
           <Heart className="w-12 h-12 text-pink-500 mx-auto mb-4 fill-current" />
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">
-            Every Picture Tells Our Story
+          <h2 className="text-4xl font-bold text-gray-800">
+            you're so hot
           </h2>
-          <p className="text-gray-600 leading-relaxed">
-            These moments captured in time remind me of all the reasons why I love you.
-            From spontaneous adventures to quiet moments together, each memory is a
-            treasure that makes our love story even more beautiful.
-          </p>
-          <div className="mt-6 flex items-center justify-center gap-2 text-pink-600">
-            <Heart className="w-4 h-4 fill-current" />
-            <span className="font-semibold">With all my love</span>
-            <Heart className="w-4 h-4 fill-current" />
-          </div>
         </div>
 
         {/* Image Modal */}

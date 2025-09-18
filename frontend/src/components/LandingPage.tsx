@@ -1,7 +1,7 @@
 import { PhotoGallery } from './ui/gallery'
-import { Button } from './ui/Button'
 import { Component as AnimatedBackground } from './ui/raycast-animated-background'
-import { Heart, ArrowRight } from 'lucide-react'
+import { ConnectSection } from './ConnectSection'
+import { Heart } from 'lucide-react'
 
 interface LandingPageProps {
   onStartAnalysis: () => void
@@ -19,39 +19,18 @@ export function LandingPage({ onStartAnalysis, onForYou }: LandingPageProps) {
 
       <div className="container mx-auto px-4 py-8 relative z-10">
         {/* Header */}
-        <header className="text-center mb-8 mt-8">
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent mb-4">
+        <header className="text-center mb-16 mt-16">
+          <h1 className="text-7xl md:text-8xl font-black bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent mb-8 tracking-tight">
             Love Meter
           </h1>
-          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-            Analyze your relationship conversations with privacy and insights.
-            Discover the beautiful dynamics of your connection.
-          </p>
         </header>
+
+        {/* Connect Section */}
+        <ConnectSection onStartAnalysis={onStartAnalysis} onForYou={onForYou} />
 
         {/* Photo Gallery with Matrix Text */}
         <PhotoGallery animationDelay={0.5} />
 
-        {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12">
-          <Button
-            onClick={onStartAnalysis}
-            size="lg"
-            className="bg-gradient-to-r from-purple-500 to-purple-700 hover:from-purple-600 hover:to-purple-800 text-white px-8 py-3"
-          >
-            <ArrowRight className="w-5 h-5 mr-2" />
-            Start Love Analysis
-          </Button>
-
-          <Button
-            onClick={onForYou}
-            size="lg"
-            className="bg-gradient-to-r from-purple-400 to-purple-600 hover:from-purple-500 hover:to-purple-700 text-white px-8 py-3"
-          >
-            <Heart className="w-5 h-5 mr-2 fill-current" />
-            For You, Michales
-          </Button>
-        </div>
 
         {/* Features */}
         <div className="mt-16 grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
