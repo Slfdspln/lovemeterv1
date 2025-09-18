@@ -13,7 +13,7 @@ export function LandingPage({ onStartAnalysis, onForYou }: LandingPageProps) {
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
-        <header className="text-center mb-8">
+        <header className="text-center mb-8 mt-8">
           <h1 className="text-5xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent mb-4">
             Love Meter
           </h1>
