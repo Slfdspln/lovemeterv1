@@ -6,6 +6,7 @@ import { ProcessingEngine } from '../lib/processing'
 import { Button } from './ui/Button'
 import { Progress } from './ui/Progress'
 import { PrivacyControls } from './PrivacyControls'
+import { Component as AnimatedBackground } from './ui/raycast-animated-background'
 
 interface UploadScreenProps {
   onAnalysisComplete: (result: AnalysisResult) => void
@@ -106,7 +107,11 @@ export function UploadScreen({ onAnalysisComplete, onBackToLanding }: UploadScre
   }
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto relative">
+      {/* Animated Background */}
+      <div className="fixed inset-0 -z-10 opacity-20">
+        <AnimatedBackground />
+      </div>
       {/* Back Button */}
       {onBackToLanding && (
         <div className="flex justify-start mb-6">
